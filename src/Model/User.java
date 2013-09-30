@@ -6,7 +6,6 @@ public class User {
 	
 	//identifiant de l'utilisateur pour se connecter (Obligatoire)
 	private String _idUser;
-
 	//Mot de passe de l'utilisateur pour se connecter (Obligatoire)
 	private String _passwdUser;
 	
@@ -79,6 +78,16 @@ public class User {
 	public User() {
 		this._idUser = null;
 		this._passwdUser = null;
+		this._nameUser = null;
+		this._fnameUser = null;
+		this._nnameUser = null;
+		this._imgUser = null;
+	}
+	
+	//Création d'un utilisateur avec ses information de connections
+	public User(String _idUser, String _passwdUser) {
+		this._idUser = _idUser;
+		this._passwdUser = _passwdUser;
 		this._nameUser = null;
 		this._fnameUser = null;
 		this._nnameUser = null;

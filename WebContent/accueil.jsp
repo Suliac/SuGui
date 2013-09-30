@@ -1,8 +1,11 @@
+<%@page import="Model.User" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<% String login = (String) request.getAttribute("login");
-   String password = (String) request.getAttribute("password");
+<% 
+	User userloged = (User) request.getAttribute("userLog");
+
 %>
 
 <html>
@@ -12,7 +15,7 @@
 </head>
 <body>
 
-	<h1>Bienvenue <%= login %> !</h1>
+	<h1>Bienvenue <%= userloged.get_nnameUser() %> !</h1>
 
 </body>
 </html>
