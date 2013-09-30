@@ -1,4 +1,4 @@
-package Categorie;
+package Object;
 
 public class Categorie {
 	

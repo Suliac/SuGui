@@ -1,4 +1,4 @@
-package Utilisateurs;
+package Object;
 
 public class User {
 	

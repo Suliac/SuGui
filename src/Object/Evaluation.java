@@ -1,4 +1,4 @@
-package Evaluation;
+package Object;
 
 public class Evaluation {
 	
