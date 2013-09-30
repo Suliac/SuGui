@@ -63,7 +63,7 @@ public class DatabaseHelper {
 		}
 		
 		Statement state;
-		ResultSet resultatStatement =null;;
+		ResultSet resultatStatement =null;
 		
 		try{
 			//On crée la connection
