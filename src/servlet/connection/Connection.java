@@ -31,13 +31,17 @@ public class Connection extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		
-		if (login.isEmpty() && password.isEmpty())
+		if (login.isEmpty() == false && password.isEmpty() == false)
 		{
-		request.setAttribute("login", login);
-		request.setAttribute("password",password);
-		request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			
+			request.setAttribute("login", login);
+			request.setAttribute("password",password);
+			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			
 		}else{
-		request.getRequestDispatcher("index.html").forward(request, response);
+			
+			request.getRequestDispatcher("index.html").forward(request, response);
+		
 		}
 		
 		
