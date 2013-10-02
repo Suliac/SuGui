@@ -47,8 +47,11 @@ public class UserManager {
 	}
 	
 	//Ajoute un utilisateur
-	public void AddUser(){
-		
+	public void AddUser(User u){
+		DatabaseHelper dbHelper = new DatabaseHelper();
+		String query = "INSERT INTO Users VALUES('" + u.get_idUser()+ "','" + u.get_passwdUser() +"','" + u.get_nameUser() +"','" + u.get_fnameUser()+ "','" + u.get_nnameUser() +"','"+ u.get_imgUser() + "')";
+		dbHelper.ExecuteSQLQuerry(query);
+		dbHelper.CloseDBH();
 	}
 	
 	//Supprime un utlisateur
@@ -90,5 +93,7 @@ public class UserManager {
 		
 		return userExist;
 		}
+	
+		
 	}
 
