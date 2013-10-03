@@ -1,6 +1,9 @@
 package servlet.connection;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +37,19 @@ public class Connection extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		List<String> errorList = new ArrayList<String>();
+		
 		//Requete SQL
 		String querry = null;
 		
@@ -57,18 +73,16 @@ public class Connection extends HttpServlet {
 			request.setAttribute("userLog", u);
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			
+		}else{
+		
+			//Si l'utilisateur n'existe pas on ajoute notre erreur
+			errorList.add("Les informations que vous essayez d'entrer sont incorrect, veuillez réessayer.");
+			
+			//Et on l'envois en attribut afin qu'elle soit récupérée dans l'index.jsp
+			request.setAttribute("Errors", errorList);
+			
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
-		
-		request.getRequestDispatcher("index.html").forward(request, response);
-		
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

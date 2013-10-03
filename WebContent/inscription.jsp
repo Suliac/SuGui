@@ -7,12 +7,7 @@
 
 <%
 	
-	ArrayList<String> errorList = (ArrayList<String>) request.getAttribute("errorList");
-	if(errorList != null){
-		for(String s : errorList){
-			System.out.println(s);
-		}
-	}
+	ArrayList<String> errorList = (ArrayList<String>) request.getAttribute("Errors");
 
 %>
 
@@ -29,7 +24,7 @@
 
 	<center>
 	<div id="fenetreinscription">
-		<form action="servletinscription" method="get">
+		<form action="servletinscription" method="post">
 			</br>
 			<span>Nom* : </span><input type = "text" name = "firstname" />
 			</br>
@@ -48,20 +43,17 @@
 			</br>
 			Les champs terminant par "*" sont obligatoires.
 			</br>
-			<input type="submit" name="inscription" value = "Validez l'inscription" />
-			</br>
-			
+			<input type="submit" name="inscription" value = "Validez l'inscription" />			
+			<a href="index.jsp">Retour à la page de connexion</a></br>
 			
 			<%
-			
 			if(errorList != null){
 
 				for (String s : errorList){ 
 				System.out.println(s);
 				%>
 					
-				<span><%= s %></span></br>
-			
+				<span><%= s %></span></br>	
 			<% } 
 							
 			}%>

@@ -35,7 +35,16 @@ public class ServletInscription extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-				List<String> errorList = new ArrayList<String>();
+				
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		List<String> errorList = new ArrayList<String>();
 		
 		//On récupère les informations du formulaire
 				String firstname = request.getParameter("firstname");
@@ -47,17 +56,20 @@ public class ServletInscription extends HttpServlet {
 				String picture = request.getParameter("picture");
 				
 				//Si tout les champs necessaires ne sont pas bien remplis on charge une erreur
-				if( firstname.isEmpty() == true || lastname.isEmpty() == true || login.isEmpty() == true || password.isEmpty() == true || passwordconf.isEmpty() == true ){
+				if( firstname.isEmpty() == true || lastname.isEmpty() == true || login.isEmpty() == true || password.isEmpty() == true || passwordconf.isEmpty() == true || nickname.isEmpty() == true ){
 					//System.out.println("Tout les champs ne sont pas remplis.");
 					errorList.add("Tout les champs ne sont pas remplis.");
 					
 				//Si les mots de passes diffèrent alors on charge une erreur
-				} else if (!password.equals(passwordconf)){
+				}
+
+				if (!password.equals(passwordconf)){
 					//System.out.println("Les deux mots de passes ne sont pas les mêmes.");
 					errorList.add("Les deux mots de passes ne sont pas les mêmes.");
 					
 					
-				} else {
+				}
+				if (errorList.isEmpty() == true){
 					//System.out.println("Utilisateur bien enregistré");
 					
 					
@@ -85,17 +97,11 @@ public class ServletInscription extends HttpServlet {
 					request.getRequestDispatcher("inscription.jsp").forward(request, response);
 					
 				}else{
-					request.getRequestDispatcher("index.html").forward(request, response);
+					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 				
 		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

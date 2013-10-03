@@ -77,7 +77,7 @@ public class UserManager {
 		try {
 
 			resultatRequete = dbHelper.ExecuteSQLQuerry(query);
-			if(resultatRequete.next()){
+			if(resultatRequete.next()){	
 				userExist = true;				
 			}
 			
@@ -87,7 +87,6 @@ public class UserManager {
 			e1.printStackTrace();
 			
 		}
-		
 		
 		dbHelper.CloseDBH();
 		
