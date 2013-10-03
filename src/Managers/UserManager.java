@@ -49,8 +49,8 @@ public class UserManager {
 	//Ajoute un utilisateur
 	public void AddUser(User u){
 		DatabaseHelper dbHelper = new DatabaseHelper();
-		String query = "INSERT INTO Users VALUES('" + u.get_idUser()+ "','" + u.get_passwdUser() +"','" + u.get_nameUser() +"','" + u.get_fnameUser()+ "','" + u.get_nnameUser() +"','"+ u.get_imgUser() + "')";
-		dbHelper.ExecuteSQLQuerry(query);
+		String query = "INSERT INTO USERS VALUES('" + u.get_idUser()+ "','" + u.get_nameUser() +"','" + u.get_fnameUser() +"','" +u.get_passwdUser() + "','" + u.get_imgUser() +"','"+ u.get_nnameUser() + "')";
+		dbHelper.ExecuteSQLUpdate(query);
 		dbHelper.CloseDBH();
 	}
 	
@@ -94,6 +94,36 @@ public class UserManager {
 		return userExist;
 		}
 	
+
+
+public boolean IsUserIdExist(User u){
+	
+	boolean userExist = false;
+	//On crée notre helper
+	DatabaseHelper dbHelper = new DatabaseHelper();
+	ResultSet resultatRequete = null;
+	String query = "SELECT * FROM USERS WHERE USE_ID = '"+ u.get_idUser() +"'";
+	String result = null;
+	
+	try {
+
+		resultatRequete = dbHelper.ExecuteSQLQuerry(query);
+		if(resultatRequete.next()){
+			userExist = true;				
+		}
+		
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		System.err.println("Erreur 1");
+		e1.printStackTrace();
 		
 	}
+	
+	
+	dbHelper.CloseDBH();
+	
+	return userExist;
+	}
 
+	
+}

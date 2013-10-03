@@ -74,10 +74,49 @@ public class DatabaseHelper {
 
 		
 	}
+	
+	
+	//Execute les requetes sql qui changent la base de donnée mais ne récupèrent PAS d'infos
+	public void ExecuteSQLUpdate(String request){
+		
+		try{
+			try {
+				Class.forName("net.sourceforge.jtds.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Problème avec la plugin (dans DatabaseHeper.java)");
+			}
+			
+			_dbConnection = DriverManager.getConnection(_dbUrl, _dbIdentifiant, _dbPassword);	
+			
+			
+		}catch(SQLException ex){
+			ex.printStackTrace();
+			System.err.println("Impossibe de se connecter a la bdd (From DatabaseHelper.java)");
+		} 
+		
+		
+		Statement state;
+		
+		try{
+			
+			state = this._dbConnection.createStatement();
+			
+			System.out.println(request);
+			
+			state.executeUpdate(request);
 
 
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		} 
+			
+		
+	}
 
-	//Méthode d'execution des requêtes SQL
+
+	//Méthode d'execution des requêtes SQL qui renvoient des données
 	public ResultSet ExecuteSQLQuerry(String request){
 				
 		
@@ -108,20 +147,15 @@ public class DatabaseHelper {
 			
 			System.out.println(request);
 			
-			resultatStatement = state.executeQuery(request);
+			if(state.executeQuery(request) != null){
+				resultatStatement = state.executeQuery(request);
+			}
+			
 			
 
 		}catch(SQLException ex){
 			ex.printStackTrace();
 		} 
-		
-		//On récupère les valeurs renvoyés (si il y en a) par la requete SQL
-		/*try {
-			System.out.println(resultatStatement.getObject(1).toString());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		
 		return resultatStatement;
 				

@@ -57,27 +57,10 @@ public class Connection extends HttpServlet {
 			request.setAttribute("userLog", u);
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			
-		}else{
-			//Si le compte n'est pas existant on envois les erreurs
-			String error = null;
-			
-			//Si le Login n'a pas été renseigné
-			if(login.isEmpty() == false ){
-			//Sinon on envois le probleme
-				error = "L";
-				if(password.isEmpty() == false){
-					//et si le mdp n'est pas rensigné aussi on met a jour notre infos qui sera envoyée
-					error = "LP";
-				
-				}
-			}else if(password.isEmpty() == false){
-				//
-				error = "P";
-			
-			}
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("index.html").forward(request, response);
 		}
+		
+		request.getRequestDispatcher("index.html").forward(request, response);
+		
 
 	}
 
