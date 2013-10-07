@@ -69,6 +69,7 @@ public class Connection extends HttpServlet {
 		if (uManager.IsUserExist(u))
 		{
 			//On passe a la page d'acceuil en envoyant les infos voulues
+			u = uManager.GetUserByIdPass(u);
 			
 			request.setAttribute("userLog", u);
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);

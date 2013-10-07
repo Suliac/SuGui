@@ -2,6 +2,7 @@ package Managers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +42,40 @@ public class UserManager {
 	/****************Méthodes*****************/
 	
 	//Récupère les utilisateurs depuis la base de donnée
-	public void GetUsers(){
+		public User GetUserByIdPass(User u){
+			//On crée notre helper
+					
+			
+				DatabaseHelper dbHelper = new DatabaseHelper();
+				ResultSet resultatRequete = null;
+				String query = "SELECT * FROM USERS WHERE USE_ID = '"+ u.get_idUser() +"' AND USE_PAS = '"+ u.get_passwdUser()+"'";
+				
+				try {
+					resultatRequete = dbHelper.ExecuteSQLQuerry(query);
+					
+					if(resultatRequete.next()){
+							
+						u.set_fnameUser(resultatRequete.getObject("USE_FIR").toString());
+						u.set_nameUser(resultatRequete.getObject("USE_NAM").toString());
+						u.set_nnameUser(resultatRequete.getObject("USE_NIC").toString());
+											
+					}
+						
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					System.err.println("Erreur 1");
+					e1.printStackTrace();
+						
+				}
+					
+					
+		dbHelper.CloseDBH();
+					
+					
+		return u;
+	}	
 		
-		
-	}
+	
 	
 	//Ajoute un utilisateur
 	public void AddUser(User u){
